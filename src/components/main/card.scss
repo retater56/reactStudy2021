@@ -1,0 +1,46 @@
+.card {
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  height: 330px;
+  background-color: #ffe4c4;
+
+  &:hover {
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0px 5px 10px 2px #223c5033;
+    background-color: #ffebd2;
+    transition-duration: 0.5s;
+  }
+
+  &__name {
+    margin-bottom: 10px;
+  }
+
+  &__img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 230px;
+  }
+
+  &__desc {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    &_likes {
+      background-image: url("../../assets/img/heart.svg");
+      background-repeat: no-repeat;
+      width: 30px;
+      height: 30px;
+    }
+    &_views {
+      background-image: url("../../assets/img/view.svg");
+      background-repeat: no-repeat;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
