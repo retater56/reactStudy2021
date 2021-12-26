@@ -1,1 +1,19 @@
 @import 'normalize';
+
+@font-face {
+  font-family: regular;
+  src: url('../assets/fonts/nunito-regular.ttf');
+}
+@font-face {
+  font-family: bold;
+  src: url('../assets/fonts/nunito-bold.ttf');
+}
+
+body {
+  font-family: regular;
+}
+
+.body__wrapper {
+  display: flex;
+  justify-content: center;
+}
