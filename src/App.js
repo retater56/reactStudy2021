@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Form from "./components/Form";
 
-import './sass/style.scss';
+import "./sass/style.scss";
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        <h1>React App!</h1>
-      </div>
-    );
+    return <Form />;
   }
 }
 
