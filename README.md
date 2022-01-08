@@ -1,4 +1,4 @@
-# React + Webpack
+# React + Webpack + Bootstrap
 
 ## Task 
-[React Form](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-api.md)
+[React Api](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-api.md)
