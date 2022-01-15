@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NotFound from "./NotFound";
+import { useSelector } from "react-redux";
 
-const Result = (props) => {
-  let picsArrray = props.data.photos.photo.map((photo) => {
+const Result = () => {
+  const photoRedux = useSelector((state) => state.photoRedux);
+
+  let picsArrray = photoRedux.photos.photo.map((photo) => {
     let photoSrc = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
-    let photoPath = `${photo.title}-${photo.farm}-${photo.server}-${photo.id}-${photo.secret}`
+    let photoPath = `${photo.title}-${photo.farm}-${photo.server}-${photo.id}-${photo.secret}`;
 
     return (
       <Link to={`/details/${photoPath}`} key={photo.id}>
@@ -17,7 +20,7 @@ const Result = (props) => {
   return (
     <div className="result">
       {picsArrray}
-      {!props.data.photos.photo.length && <NotFound />}
+      {!photoRedux.photos.photo.length && <NotFound />}
     </div>
   );
 };

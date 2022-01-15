@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Spinner,
   Form,
@@ -8,14 +9,16 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Result from "./Result";
+import { startSearch } from "../actions/searchAction";
 
 const Search = () => {
-  const [state, setState] = useState(null);
+  const dispatch = useDispatch();
+  const isFetching = useSelector((state) => state.isFetching);
+  const data = useSelector((state) => state.photoRedux);
+
   const [searchValue, setSearchValue] = useState("");
-  const [isPending, setIsPending] = useState(false);
   const [radioValue, setRadioValue] = useState("10");
   const [page, setPage] = useState(null);
-  const [error, setEror] = useState(null);
 
   const radios = [
     { name: "10", value: "10" },
@@ -42,12 +45,8 @@ const Search = () => {
     if (event.code == "Enter") {
       if (!searchValue) {
         alert("Please, write text!");
-        setState(null);
-        setIsPending(false);
         return;
       }
-
-      setIsPending(true);
       setPage(1);
     }
   };
@@ -59,31 +58,14 @@ const Search = () => {
 
   useEffect(() => {
     if (!page) return;
-    fetchingData();
+    dispatch(startSearch(searchValue, radioValue, page));
   }, [radioValue, page]);
-
-  const fetchingData = () => {
-    fetch(
-      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=97b84eae92cb8df4d0ea1c834e4fcec0&tags=${searchValue}&per_page=${radioValue}&page=${page}&format=json&nojsoncallback=1`
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("could not fetch data from that resource");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setState(data);
-        setIsPending(false);
-      })
-      .catch((err) => {
-        setEror(err.message);
-      });
-  };
 
   return (
     <div className="container">
-      <h2>This search work with <a href="https://www.flickr.com/" target="_blank"> flickr.com</a> API</h2>
+      <h2>
+        This search work with <a href="https://www.flickr.com/" target="_blank">flickr.com</a> API
+      </h2>
       <Form.Control
         size="lg"
         type="text"
@@ -107,14 +89,13 @@ const Search = () => {
           </ToggleButton>
         ))}
       </ButtonGroup>
-      {isPending && (
+      {isFetching && (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       )}
-      {state && paginationBasic}
-      {state && <Result data={state} />}
-      {error && <div>{error}</div>}
+      {data.hasOwnProperty("photos") && paginationBasic}
+      {data.hasOwnProperty("photos") && <Result />}
     </div>
   );
 };
