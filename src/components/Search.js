@@ -44,7 +44,7 @@ const Search = () => {
       if (!searchValue) {
         alert("Please, write text!");
         setState(null);
-        setIsPending(false)
+        setIsPending(false);
         return;
       }
 
@@ -87,7 +87,7 @@ const Search = () => {
 
   return (
     <div className="container">
-      <h2>This search work with <a href="https://www.flickr.com/" target='_blank'>flickr.com</a> API</h2>
+      <h2>This search work with <a href="https://www.flickr.com/" target="_blank"> flickr.com</a> API</h2>
       <Form.Control
         size="lg"
         type="text"

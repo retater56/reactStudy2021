@@ -1,11 +1,11 @@
 import React from "react";
-import Search from "./components/Search";
-import './app.scss'
+import Routing from "./components/Router";
+import "./app.scss";
 
 const App = () => {
   return (
-    <Search />
-  )
+    <Routing />
+  );
 };
 
 export default App;

@@ -1,24 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import NotFound from "./NotFound";
 
 const Result = (props) => {
-  const notFound = (
-    <div className="notFound">
-      <h2>404</h2>
-      <h3>Not found</h3>
-      <h4>Please, try again...</h4>
-    </div>
-  );
-
   let picsArrray = props.data.photos.photo.map((photo) => {
     let photoSrc = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+    let photoPath = `${photo.title}-${photo.farm}-${photo.server}-${photo.id}-${photo.secret}`
 
-    return <img alt={photo.title} src={photoSrc} key={photo.id}></img>;
+    return (
+      <Link to={`/details/${photoPath}`} key={photo.id}>
+        <img alt={photo.title} src={photoSrc}></img>
+      </Link>
+    );
   });
 
   return (
     <div className="result">
       {picsArrray}
-      {!props.data.photos.photo.length && notFound}
+      {!props.data.photos.photo.length && <NotFound />}
     </div>
   );
 };
