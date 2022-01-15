@@ -40,7 +40,6 @@ const Search = () => {
 
   const handleSearch = (event) => {
     if (event.code == "Enter") {
-      console.log(searchValue);
       if (!searchValue) {
         alert("Please, write text!");
         setState(null);
@@ -59,8 +58,6 @@ const Search = () => {
   };
 
   useEffect(() => {
-    console.log(radioValue);
-    console.log(page);
     if (!page) return;
     fetchingData();
   }, [radioValue, page]);
@@ -76,7 +73,6 @@ const Search = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setState(data);
         setIsPending(false);
       })

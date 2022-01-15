@@ -18,7 +18,6 @@ const Details = () => {
       `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`
     )
       .then((res) => {
-        console.log(res)
         if (!res.ok) {
           throw Error("could not fetch data from that resource");
         }
