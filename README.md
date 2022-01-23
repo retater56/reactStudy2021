@@ -1,4 +1,4 @@
-# React + Webpack + Bootstrap + Redux
+# React + Webpack + Bootstrap + Redux + jest + react-testing-library
 
 ## Task 
-[React Redux](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-redux.md)
+[React Testing](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-testing.md)
